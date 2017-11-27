@@ -598,7 +598,8 @@ function updateWater(){
         if (d<20){
             hurt(20);
           particlesHolder.spawnParticles(raindrops[i].mesh.position.clone(), 30, Colors.blue, 1);
-          bird.mesh.position.y -= 8.28;
+          bird.mesh.position.y -= 20;
+          bird.mesh.position.x -= 4;
           scene.remove(raindrops[i].mesh);
           raindrops.splice(i,1);
 
