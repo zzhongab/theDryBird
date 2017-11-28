@@ -738,7 +738,7 @@ function loop(){
 
         distance += Math.floor(deltaTime/100000);
 
-        var rainFreq = Math.floor(2+(1400/(distance+100)));
+        var rainFreq = Math.floor(1+(1400/(distance+100)));
 
         if(distance % rainFreq == 0){
 
