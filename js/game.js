@@ -414,6 +414,7 @@ var drugs = [];
 var distance = 0;
 var surface = null;
 var particlesPool = [];
+var fall = 0;
 
 function createWater() {
     // set up our initial vars
@@ -704,6 +705,7 @@ function heal(val){
 
 
 function gameOVer(){
+    fall = 0;
     gameOver = true;
 }
 
@@ -758,9 +760,21 @@ function loop(){
         distance ++;
     }
     else{
+
         document.getElementById("health").innerHTML = '0';
-        var msg = "Game Over! \nFinal Score: "+Math.floor(distance/10);
-        window.alert(msg);
+        bird.mesh.rotation.z = -1;
+        bird.mesh.position.y -= 1.3 + (fall *0.08);
+        bird.mesh.position.x += 0.8 - (fall *0.005);
+        bird.mesh.rotation.y += 0.05;
+        bird.mesh.rotation.z += 0.005;
+        fall++;
+        if (bird.mesh.position.y<0) {
+            var msg = "Game Over! \nFinal Score: " + Math.floor(distance / 10);
+            window.alert(msg);
+            return;
+        }
+        renderer.render(scene, camera);
+        requestAnimationFrame(loop);
     }
 }
 
